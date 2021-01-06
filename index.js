@@ -1,44 +1,62 @@
-var tracery = require('tracery-grammar');
-var chordGrammar = tracery.createGrammar({
-  //'definition': ['6','7','maj','min','sus2','sus4','maj7','min7','dom7','dim','dim7','aug','sixth','Maj','m','Min','Dim','Dim7','Maj7','Min7','m7','Dom7','Sus2','Sus4','Aug','6th','Sixth'],
-  'sadDefinition': ['min','min7'],
-  'happyDefinition': ['maj','maj7','sus4'],
-  'sassyDefinition': ['dom7','dim','dim7'],
-  'sadNote': ['A','E','D'],
-  'happyNote': ['C','F','G'],
-  'sassyNote': ['B','G'],
-  'chordType': ['#sadNote##sadDefinition#','#happyNote##happyDefinition#','#sassyNote##sassyDefinition#'],
-  'text':['#chordType#'],
-});
-
-var rhythmGrammar = tracery.createGrammar({
-  'groove': ['x__x__x-','x--x__x-','x--x--x_'],
-  'text':['#groove#'],
-});
-
-var getRandomText = function(grammar) {
-  return grammar.flatten('#text#');
-}
-
-var getText = function(grammar, textCount) {
-  var textItems = [];
-  for(var i = 0; i < textCount; i++) {
-    var text = getRandomText(grammar);
-    textItems.push(text);
-  }
-  return textItems;
-}
-
-var chordList = getText(chordGrammar, 8);
-console.log('chordList:',chordList);
-
-var rhythmList = getText(rhythmGrammar, 8);
-console.log('rhythmList:',rhythmList);
-
 const scribble = require('scribbletune');
-let chords = scribble.clip({
-    notes: chordList,
-    pattern: rhythmList.join(''),
-    sizzle: true
-});  
-scribble.midi(chords, 'random-music.mid');
+let midiParser  = require('midi-parser-js');
+let fs = require('fs')
+
+const getRandomPattern = function(count) {
+  let str = '';
+  for (let i = 0; i < (count || 8); i++) {
+    str += Math.round(Math.random()) ? 'x-' : '-xR';
+  }
+
+  return str;
+};
+
+//const pattern = getRandomPattern();
+
+const chords = scribble.getChordsByProgression('C4 minor', 'ii III ii v'); //i III ii v
+const notes = [];
+let pattern = '';
+
+chords.split(' ').forEach((c, i) => { 
+  const chord = scribble.chord(c);
+  if (i % 2 !== 0) {
+    // use 2 quarter notes
+    notes.push(chord[0]);
+    notes.push(chord[1]);
+    pattern = pattern + 'xx'
+  } else {
+    // use a quarter note and 2 eigth notes
+    notes.push(chord[0]);
+    notes.push(chord[1]);
+    notes.push(chord[2]);
+    pattern = pattern + 'x[xx]'
+  }
+});
+
+const clip1 = scribble.clip({
+  notes,
+  pattern: pattern
+});
+
+const clip2 = scribble.clip({
+  notes,
+  pattern: pattern,
+  subdiv: '2n'
+});
+
+
+scribble.midi(clip1, 'clip1.mid');
+scribble.midi(clip2, 'clip2.mid');
+
+const contents = fs.readFileSync('./clip1.mid', {encoding: 'base64'});
+
+ console.log(contents);
+// fs.readFile('./clip1.mid', 'base64', function (err,data) {
+//   // Parse the obtainer base64 string ...
+//   var midiArray = midiParser.parse(data);
+//   // done!
+ 
+// });
+
+
+
