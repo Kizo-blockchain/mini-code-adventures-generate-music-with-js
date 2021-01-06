@@ -90,8 +90,13 @@ const getRandomPatternblow = function(count = 8) {
 
 const patternbasslow = getRandomPatternblow();
 
+const ptn = 'xxxx'.repeat(7);
+const A = 'xxx[x[RR]]';
+const B = 'xx[x[RR]][x[RR]]';
+const C = 'x-[x[RR]]';
+
 const kick = scribble.clip({
-  pattern: "xxxx".repeat(20),
+  pattern: ptn + A + ptn + B + ptn + A + ptn + C,
   notes: 'c4',
 });
 
@@ -128,14 +133,15 @@ const bassEnd = scribble.clip({
 });
 
 //scribble.midi(bass.concat(bassEnd), 'bass.mid');
-let midisbassEnd = scribble.midi(bass.concat(bassEnd), null);
+let midisbassEnd = scribble.midi(bassEnd, null);
 
 
 const sA = '-x-x';
-const sB = '[-x][-x][-x][xx]';
+const sB = '-[xR]-[Rx]';
+
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: '-x'.repeat(20),
+  pattern: (sA + sA + sB + sA + sA + sB + sA + sA).repeat(20),
 });
 
 
@@ -251,6 +257,16 @@ let midiData = scribble.midi(oh, null);
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_SD-09.wav'));
+   });
+
+   
+   app.get('/sd/E808_BDs-06.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_BDs-06.wav'));
    });
 
 
