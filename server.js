@@ -233,13 +233,13 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/[OH]/E808_OH-01.wav'));
  });
 
-      app.get('/bd/E808_BD[long]-01.wav', function(req, res) {
+      app.get('/bd/E808_BD[long]-04.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/[BD]/E808_BD[long]-01.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/[BD]/E808_BD[long]-04.wav'));
    });
 
 
