@@ -100,7 +100,7 @@ let midiptn = scribble.midi(ptn, null);
 
 
 const ch = scribble.clip({
-  pattern: patternch.repeat(8),
+  pattern: '[xx][xx][xxx][xx]',
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
@@ -112,7 +112,7 @@ let midich = scribble.midi(ch, null);
 
 const bass = scribble.clip({
   notes: 'Bb2',
-  pattern: patternbass.repeat(16),
+  pattern: '[-x]',
   randomNotes: scribble.scale('Bb2 minor').slice(1),
   accent: '--x-',
 });
@@ -135,7 +135,7 @@ const sA = '-x-x';
 const sB = '[-x][-x][-x][xx]';
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: (sA + sA + sB + sA + sA + sB + sA + sA).repeat(8),
+  pattern: '-x',
 });
 
 
