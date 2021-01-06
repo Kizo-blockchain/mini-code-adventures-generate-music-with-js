@@ -224,6 +224,16 @@ let midiData = scribble.midi(oh, null);
  });
 
 
+   app.get('/oh/E808_OH-01.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/[OH]/E808_OH-01.wav'));
+ });
+
+
 app.listen(port);
 
 
