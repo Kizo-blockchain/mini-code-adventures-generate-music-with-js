@@ -91,7 +91,7 @@ const getRandomPatternblow = function(count = 8) {
 const patternbasslow = getRandomPatternblow();
 
 const kick = scribble.clip({
-  pattern: "xxxx",
+  pattern: "xxxx".repeat(20),
   notes: 'c4',
 });
 
@@ -100,7 +100,7 @@ let midiptn = scribble.midi(ptn, null);
 
 
 const ch = scribble.clip({
-  pattern: '[xx][xx][xxx][xx]',
+  pattern: '[xx][xx][xxx][xx]'.repeat(20),
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
@@ -112,7 +112,7 @@ let midich = scribble.midi(ch, null);
 
 const bass = scribble.clip({
   notes: 'Bb2',
-  pattern: '[-x]',
+  pattern: '[-x]'.repeat(20),
   randomNotes: scribble.scale('Bb2 minor').slice(1),
   accent: '--x-',
 });
@@ -122,7 +122,7 @@ let midisbass = scribble.midi(bass, null);
 
 const bassEnd = scribble.clip({
   notes: 'G#2',
-  pattern: patternbasslow.repeat(16),
+  pattern: patternbasslow.repeat(20),
   randomNotes: scribble.scale('Bb2 harmonic minor').slice(2, 5),
   accent: '--x-',
 });
@@ -135,7 +135,7 @@ const sA = '-x-x';
 const sB = '[-x][-x][-x][xx]';
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: '-x',
+  pattern: '-x'.repeat(20),
 });
 
 
@@ -145,7 +145,7 @@ let midisnare = scribble.midi(snare, null);
 
 const oh = scribble.clip({
   notes: 'c4',
-  pattern: '[-x]'.repeat(),
+  pattern: '[-x]'.repeat(20),
 });
 
 
