@@ -243,6 +243,16 @@ let midiData = scribble.midi(oh, null);
    });
 
 
+   app.get('/sd/E808_SD-08.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_SD-08.wav'));
+   });
+
+
 
 app.listen(port);
 
