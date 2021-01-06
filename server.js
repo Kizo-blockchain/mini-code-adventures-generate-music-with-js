@@ -100,7 +100,7 @@ let midiptn = scribble.midi(ptn, null);
 
 
 const ch = scribble.clip({
-  pattern: '[xx][xx][xxx][xx]'.repeat(20),
+  pattern: '[xR][[x[xR]]]'.repeat(20),
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
@@ -112,7 +112,7 @@ let midich = scribble.midi(ch, null);
 
 const bass = scribble.clip({
   notes: 'Bb2',
-  pattern: '[-x]'.repeat(20),
+  pattern: '[-xRx][-xRR][-xRx][-xxR]'.repeat(20),
   randomNotes: scribble.scale('Bb2 minor').slice(1),
   accent: '--x-',
 });
@@ -122,13 +122,13 @@ let midisbass = scribble.midi(bass, null);
 
 const bassEnd = scribble.clip({
   notes: 'G#2',
-  pattern: patternbasslow.repeat(20),
+  pattern: '[-xRx][-xRR][-xRx][-xxR]'.repeat(20),
   randomNotes: scribble.scale('Bb2 harmonic minor').slice(2, 5),
   accent: '--x-',
 });
 
 //scribble.midi(bass.concat(bassEnd), 'bass.mid');
-let midisbassEnd = scribble.midi(bassEnd, null);
+let midisbassEnd = scribble.midi(bass.concat(bassEnd), null);
 
 
 const sA = '-x-x';
@@ -145,7 +145,7 @@ let midisnare = scribble.midi(snare, null);
 
 const oh = scribble.clip({
   notes: 'c4',
-  pattern: '[-x]'.repeat(20),
+  pattern: '[-x][Rx][Rx][Rx]'.repeat(20),
 });
 
 
