@@ -214,11 +214,11 @@ let midiData = scribble.midi(oh, null);
       res.end(jsonString);
  });
 
- //  app.get('/ch/E808_CH-01.wav', function(req, res) {
- //        console.log("get soundfile");
+  app.get('/ch/E808_CH-01.wav', function(req, res) {
+        console.log("get soundfile");
 
- //        res.sendFile(path.join(__dirname, './Hits', '/[CH]/E808_CH-01.wav'));
- // });
+        res.sendFile(path.join(__dirname, './Hits', '/[CH]/E808_CH-01.wav'));
+ });
 
 
 app.listen(port);
