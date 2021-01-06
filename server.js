@@ -129,7 +129,7 @@ const bassEnd = scribble.clip({
 });
 
 //scribble.midi(bass.concat(bassEnd), 'bass.mid');
-let midisbassEnd = scribble.midi(bass.concat(bassEnd), null);
+let midisbassEnd = scribble.midi(bassEnd, null);
 
 
 const sA = '-x-x';
