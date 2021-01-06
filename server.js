@@ -262,7 +262,7 @@ let midiData = scribble.midi(oh, null);
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_BDs-06.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/[BD]/E808_BDs-06.wav'));
    });
 
 
