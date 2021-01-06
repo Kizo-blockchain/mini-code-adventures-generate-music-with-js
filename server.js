@@ -59,7 +59,7 @@ const C = 'x-[x[RR]]';
 const getRandomPattern = function(count = 8) {
   let str = '[xx][xx][xxx][xx]';
   for (let i = 1; i < count; i++) {
-    str += Math.round(Math.random()) ? '[xR][[x[xR]]]' : '[[x[xR]]][xR]';
+    str += Math.round(Math.random()) ? '-x' : '[xx][xx][xxx][xx]';
   }
 
   return str;
@@ -79,6 +79,7 @@ const getRandomPatternb = function(count = 8) {
 const patternbass = getRandomPatternb();
 
 const getRandomPatternblow = function(count = 8) {
+  
   let str = '[[x[xR]]][xR]';
   for (let i = 1; i < count; i++) {
     str += Math.round(Math.random()) ? '[-xRx][-xRR][-xRx][-xxR]' : '[-xxR][-xRx][-xRR][-xRx]';
@@ -243,13 +244,13 @@ let midiData = scribble.midi(oh, null);
    });
 
 
-   app.get('/sd/E808_SD-08.wav', function(req, res) {
+   app.get('/sd/E808_SD-09.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_SD-08.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_SD-09.wav'));
    });
 
 
