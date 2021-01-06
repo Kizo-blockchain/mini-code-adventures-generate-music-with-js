@@ -51,10 +51,6 @@ const createMidiForToneJs = () => {
 
  // let midiData = scribble.midi([].concat(clipA, clipA, clipA, clipB), null);
 
-const ptn = 'xxxx'.repeat(7);
-const A = 'xxx[x[RR]]';
-const B = 'xx[x[RR]][x[RR]]';
-const C = 'x-[x[RR]]';
 
 const getRandomPattern = function(count = 8) {
   let str = '[xx][xx][xxx][xx]';
@@ -259,7 +255,7 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/[SD]/E808_SD-09.wav'));
    });
 
-   
+
    app.get('/sd/E808_BDs-06.wav', function(req, res) {
   
           res.statusCode = 200;
