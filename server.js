@@ -4,52 +4,96 @@ const MidiConvert = require("midiconvert"); // npm install midiconvert
 const scribble = require("scribbletune"); // npm install scribbletune
 const path = require("path");
 const express = require('express');
+
 const port = process.env.PORT || 5000;
 
 const createMidiForToneJs = () => {
-  // let clip = scribble.clip({
-  //   notes,
-  //   pattern
-  // });
-
- // let midiData;
 
 
-//  const root = 'B2';
-// const scale = 'minor';
-
-// const getRandomPattern = function(count = 8) {
-//   let str = '[x-]R';
-//   for (let i = 1; i < count; i++) {
-//     str += Math.round(Math.random()) ? '[x-]R' : 'R[x-]';
-//   }
-
-//   return str;
-// };
-
-// const pattern = getRandomPattern();
-
-// const clipA = scribble.clip({
-//   notes: root,
-//   randomNotes: scribble.arp(
-//     scribble.getChordsByProgression(root + ' ' + scale, 'ii iii')
-//   ),
-//   pattern,
-//   subdiv: '16n',
-// });
-
-// const clipB = scribble.clip({
-//   notes: root,
-//   randomNotes: scribble.arp(
-//     scribble.getChordsByProgression(root + ' ' + scale, 'vi v')
-//   ),
-//   pattern,
-//   subdiv: '16n',
-// });
+var chArray = [
+    '--x---x---x---x-',
+    'xxxxxxxxxxxxxxxx',
+    '-x-xxxx-xx-xx-xx',
+    '--x---x---x-xxxx',
+    '--x-------x-----'
+];
+var randomChPatern = Math.floor(Math.random()*chArray.length);
 
 
+var ohArray = [
+    '--x---x---x---x-',
+    'xxxxxxxxxxxxxxxx',
+    '-x-xxxx-xx-xx-xx',
+    '--x---x---x-xxxx',
+    '--x-------x-----'
+];
 
- // let midiData = scribble.midi([].concat(clipA, clipA, clipA, clipB), null);
+var randomOhPatern = Math.floor(Math.random()*ohArray.length);
+
+
+var clavArray = [
+    '---x--xx---x--xx',
+    '--------------xx',
+    '--------x-------'
+];
+
+var randomClPatern = Math.floor(Math.random()*clavArray.length);
+
+
+var marArray = [
+    '--x---x---x---x-',
+    '-xx—xxxxxx-x-xx',
+    '--------x-------'
+];
+
+var randomMarPatern = Math.floor(Math.random()*marArray.length);
+
+
+
+var clapArray = [
+    '-----------x---',
+    '--------------x-',
+    '----x---x------x'
+];
+
+var randomCPPatern = Math.floor(Math.random()*clapArray.length);
+
+
+var snareArray = [
+    '----x------x---',
+    '------x-------x-',
+    '---xx---x-----xx',
+    '-----------x---',
+    '--------------x-'
+];
+
+var randomSnarePatern = Math.floor(Math.random()*snareArray.length);
+
+
+var kickArray = [
+    '----x------x---',
+    '------x-------x-',
+    '---xx---x-----xx',
+    '-----------x---',
+    '--------------x-'
+];
+
+var randomKickPatern = Math.floor(Math.random()*kickArray.length);
+
+
+
+
+const getRandomPattern = function(count = 8) {
+  let str = '[xx][xx][xxx][xx]';
+  for (let i = 1; i < count; i++) {
+    str += Math.round(Math.random()) ? '-x' : '[xx][xx][xxx][xx]';
+  }
+
+  return str;
+};
+
+
+
 
 
 const getRandomPattern = function(count = 8) {
@@ -92,16 +136,16 @@ const B = 'xx[x[RR]][x[RR]]';
 const C = 'x-[x[RR]]';
 
 const kick = scribble.clip({
-  pattern: ptn + A + ptn + B + ptn + A + ptn + C,
+  pattern: randomKickPatern,
   notes: 'c4',
 });
 
 //scribble.midi(kick, 'kick.mid');
-let midiptn = scribble.midi(ptn, null);
+let midikick = scribble.midi(kick, null);
 
 
 const ch = scribble.clip({
-  pattern: '[xR][[x[xR]]]'.repeat(16),
+  pattern: randomChPatern,
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
@@ -137,7 +181,7 @@ const sB = '-[xR]-[Rx]';
 
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: (sA + sA + sB + sA + sA + sB + sA + sA).repeat(4),
+  pattern: randomSnarePatern,
 });
 
 
@@ -145,9 +189,35 @@ const snare = scribble.clip({
 //scribble.midi(snare, 'snare.mid');
 let midisnare = scribble.midi(snare, null);
 
+
+const clav = scribble.clip({
+  notes: 'c4',
+  pattern: randomClPatern,
+});
+
+
+
+//scribble.midi(snare, 'snare.mid');
+let midiclav = scribble.midi(clav, null);
+
+
+
+
+const mar = scribble.clip({
+  notes: 'c4',
+  pattern: randomMarPatern,
+});
+
+
+
+//scribble.midi(snare, 'snare.mid');
+let midimar = scribble.midi(mar, null);
+
+
+
 const oh = scribble.clip({
   notes: 'c4',
-  pattern: '[-x][Rx][Rx][Rx]'.repeat(20),
+  pattern: randomOhPatern,
 });
 
 
@@ -160,55 +230,38 @@ let midiData = scribble.midi(oh, null);
 
    let midiconvertsnare = MidiConvert.parse(midisnare)
    let midiconvertsoh = MidiConvert.parse(midisnare)
+   let mindiconvertclav = MidiConvert.parse(midiclav)
+   let mindiconvertmar = MidiConvert.parse(midimar)
 
    let midiconvertbass = MidiConvert.parse(midisbass)
    let midiconvertbassend = MidiConvert.parse(midisbassEnd)
    let midiconvertch = MidiConvert.parse(midich)
-   let midiconvertptn = MidiConvert.parse(midiptn)
-
-
+   let midiconvertkick = MidiConvert.parse(midikick)
 
   // console.log(midiconvert)
 
   // console.log("midi converted")
-  return {oh:midiconvertsoh, snare : midiconvertsnare,
+  return {
+   oh:midiconvertsoh, 
+   snare : midiconvertsnare,
    bass:midiconvertbass,
    bassend:midiconvertbassend,
    ch:midiconvertch,
-   ptn:midiconvertptn};
+   kick:midiconvertkick,
+   clav:mindiconvertclav,
+   mar: mindiconvertmar};
 };
 
-// const server = http.createServer((req, res) => {
-//   // Don't mind the naivety of the following URL router
-//   switch (req.url.toLowerCase()) {
-//     case "/":
-//       res.end(indexHTMLContents);
-//       break;
-//     case "/midi.json":
-//       res.statusCode = 200;
-//       res.setHeader("Access-Control-Allow-Origin", "*");
-//       res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//       res.setHeader("Content-Type", "application/json");
-//       const jsonString = JSON.stringify(createMidiForToneJs("CM", "xxxxxxx"));
-//       res.end(jsonString);
-//       break;
-//      case "/ch":
-//      res.sendFile(path.join(__dirname, './Hits', '/[CH]/E808_CH-01.wav'));
-//      break;
-     
-//     default:
-//       res.statusCode = 404;
-//       res.end();
-//   }
-// });
 
-// server.listen(3000); // Open http://localhost:3000 in browser
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); //here configure your origin pointing to your app
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-
- var app = express();
-
-
-  app.get('/midi.json', function(req, res) {
+ app.get('/midi.json', function(req, res) {
       res.statusCode = 200;
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -217,14 +270,162 @@ let midiData = scribble.midi(oh, null);
       res.end(jsonString);
  });
 
-  app.get('/ch/E808_CH-01.wav', function(req, res) {
+   app.get('/ch/CH1.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/[CH]/E808_CH-01.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/CH1.wav'));
+   });
+
+    app.get('/ch/CH2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CH2.wav'));
+
+     });
+
+      app.get('/ch/CH3.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CH3.wav'));
+     });
+
+
+        app.get('/kick1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/kick1.wav'));
  });
+
+      app.get('/kick2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/kick2.wav'));
+    });
+
+       app.get('/kick3.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/kick3.wav'));
+    });
+
+          app.get('/kick4.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/kick4.wav'));
+    });
+
+      app.get('/kick5.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/kick5.wav'));
+    });
+
+        app.get('/clap1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/clap1.wav'));
+    });
+
+
+    app.get('/clap2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/clap2.wav'));
+    });
+
+     app.get('/clap3.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/clap3.wav'));
+    });
+
+      app.get('/clav1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/clav1.wav'));
+    });
+
+        app.get('/CYM1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CYM1.wav'));
+    });
+
+           app.get('/CYM2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CYM2.wav'));
+    });
+
+               app.get('/CYM2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CYM2.wav'));
+    });
+
+     app.get('/MAR1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/MAR1.wav'));
+    });
+
+
+        app.get('/MAR2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/MAR2.wav'));
+     });
 
 
    app.get('/oh/E808_OH-01.wav', function(req, res) {

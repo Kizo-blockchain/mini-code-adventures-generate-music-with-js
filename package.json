@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Generate MIDI files in JavaScript with ScribbleTune and Tracery",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +15,15 @@
     "midi-parser-js": "^4.0.4",
     "midiconvert": "^0.4.7",
     "path": "^0.12.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "scribbletune": "^3.15.0",
     "tracery-grammar": "^2.7.3"
-  }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11"
+  },
+
 }
