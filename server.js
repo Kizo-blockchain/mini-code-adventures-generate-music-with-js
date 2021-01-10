@@ -4,8 +4,9 @@ const MidiConvert = require("midiconvert"); // npm install midiconvert
 const scribble = require("scribbletune"); // npm install scribbletune
 const path = require("path");
 const express = require('express');
+const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 const createMidiForToneJs = () => {
 
@@ -19,8 +20,20 @@ var chArray = [
 ];
 var randomChPatern = Math.floor(Math.random()*chArray.length);
 
+console.log(randomChPatern)
 
 var ohArray = [
+    '---x------x---',
+    'x-----x-x---x---',
+    'x-------x-------',
+    'x---------------'
+];
+
+var randomOhPatern = Math.floor(Math.random()*ohArray.length);
+
+console.log(randomOhPatern)
+
+var chArray = [
     '--x---x---x---x-',
     'xxxxxxxxxxxxxxxx',
     '-x-xxxx-xx-xx-xx',
@@ -28,7 +41,7 @@ var ohArray = [
     '--x-------x-----'
 ];
 
-var randomOhPatern = Math.floor(Math.random()*ohArray.length);
+var randomChPatern = Math.floor(Math.random()*chArray.length);
 
 
 var clavArray = [
@@ -51,7 +64,7 @@ var randomMarPatern = Math.floor(Math.random()*marArray.length);
 
 
 var clapArray = [
-    '-----------x---',
+    '-----------x----',
     '--------------x-',
     '----x---x------x'
 ];
@@ -60,10 +73,10 @@ var randomCPPatern = Math.floor(Math.random()*clapArray.length);
 
 
 var snareArray = [
-    '----x------x---',
+    '----x------x----',
     '------x-------x-',
     '---xx---x-----xx',
-    '-----------x---',
+    '-----------x----',
     '--------------x-'
 ];
 
@@ -71,11 +84,11 @@ var randomSnarePatern = Math.floor(Math.random()*snareArray.length);
 
 
 var kickArray = [
-    '----x------x---',
-    '------x-------x-',
-    '---xx---x-----xx',
-    '-----------x---',
-    '--------------x-'
+    'x---x---x---x---',
+    'x---x---x---x--x',
+    'x--x--x-------x-',
+    'x--x---x--xx----',
+    '---x--x-x---xxxx'
 ];
 
 var randomKickPatern = Math.floor(Math.random()*kickArray.length);
@@ -83,60 +96,13 @@ var randomKickPatern = Math.floor(Math.random()*kickArray.length);
 
 
 
-const getRandomPattern = function(count = 8) {
-  let str = '[xx][xx][xxx][xx]';
-  for (let i = 1; i < count; i++) {
-    str += Math.round(Math.random()) ? '-x' : '[xx][xx][xxx][xx]';
-  }
-
-  return str;
-};
-
-
-
-
-
-const getRandomPattern = function(count = 8) {
-  let str = '[xx][xx][xxx][xx]';
-  for (let i = 1; i < count; i++) {
-    str += Math.round(Math.random()) ? '-x' : '[xx][xx][xxx][xx]';
-  }
-
-  return str;
-};
-
-const patternch = getRandomPattern();
-
-const getRandomPatternb = function(count = 8) {
-  let str = '[-x]';
-  for (let i = 1; i < count; i++) {
-    str += Math.round(Math.random()) ? '[-x]-x' : 'x-[-x]';
-  }
-
-  return str;
-};
-
-const patternbass = getRandomPatternb();
-
-const getRandomPatternblow = function(count = 8) {
-
-  let str = '[[x[xR]]][xR]';
-  for (let i = 1; i < count; i++) {
-    str += Math.round(Math.random()) ? '[-xRx][-xRR][-xRx][-xxR]' : '[-xxR][-xRx][-xRR][-xRx]';
-  }
-
-  return str;
-};
-
-const patternbasslow = getRandomPatternblow();
-
 const ptn = 'xxxx'.repeat(7);
 const A = 'xxx[x[RR]]';
 const B = 'xx[x[RR]][x[RR]]';
 const C = 'x-[x[RR]]';
 
 const kick = scribble.clip({
-  pattern: randomKickPatern,
+  pattern: kickArray[randomKickPatern],
   notes: 'c4',
 });
 
@@ -145,7 +111,7 @@ let midikick = scribble.midi(kick, null);
 
 
 const ch = scribble.clip({
-  pattern: randomChPatern,
+  pattern: chArray[randomChPatern],
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
@@ -181,7 +147,7 @@ const sB = '-[xR]-[Rx]';
 
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: randomSnarePatern,
+  pattern: snareArray[randomSnarePatern],
 });
 
 
@@ -192,7 +158,7 @@ let midisnare = scribble.midi(snare, null);
 
 const clav = scribble.clip({
   notes: 'c4',
-  pattern: randomClPatern,
+  pattern: clavArray[randomClPatern],
 });
 
 
@@ -205,7 +171,7 @@ let midiclav = scribble.midi(clav, null);
 
 const mar = scribble.clip({
   notes: 'c4',
-  pattern: randomMarPatern,
+  pattern: marArray[randomMarPatern],
 });
 
 
@@ -217,7 +183,7 @@ let midimar = scribble.midi(mar, null);
 
 const oh = scribble.clip({
   notes: 'c4',
-  pattern: randomOhPatern,
+  pattern: ohArray[randomOhPatern],
 });
 
 
@@ -253,13 +219,14 @@ let midiData = scribble.midi(oh, null);
 };
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); //here configure your origin pointing to your app
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*"); //here configure your origin pointing to your app
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
  app.get('/midi.json', function(req, res) {
       res.statusCode = 200;
