@@ -55,7 +55,7 @@ var randomClPatern = Math.floor(Math.random()*clavArray.length);
 
 var marArray = [
     '--x---x---x---x-',
-    '-xx—xxxxxx-x-xx',
+    '-xx--xxxxxx-x-xx',
     '--------x-------'
 ];
 
@@ -206,7 +206,8 @@ let midiData = scribble.midi(oh, null);
   // console.log(midiconvert)
 
   // console.log("midi converted")
-  return {
+
+  let obj = {
    oh:midiconvertsoh, 
    snare : midiconvertsnare,
    bass:midiconvertbass,
@@ -214,7 +215,9 @@ let midiData = scribble.midi(oh, null);
    ch:midiconvertch,
    kick:midiconvertkick,
    clav:mindiconvertclav,
-   mar: mindiconvertmar};
+   mar: mindiconvertmar}
+
+  return obj;
 };
 
 
