@@ -341,13 +341,13 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/clap3.wav'));
     });
 
-      app.get('/clav1.wav', function(req, res) {
+      app.get('/clav.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/clav1.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/clav.wav'));
     });
 
         app.get('/CYM1.wav', function(req, res) {
