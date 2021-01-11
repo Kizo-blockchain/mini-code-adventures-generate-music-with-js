@@ -436,6 +436,16 @@ let midiData = scribble.midi(oh, null);
    });
 
 
+   app.get('/CB2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CB2.wav'));
+   });
+
+
 
 app.listen(port);
 
