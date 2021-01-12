@@ -303,13 +303,13 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/kick3.wav'));
     });
 
-          app.get('/kick4.wav', function(req, res) {
+          app.get('/kickq.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/kick4.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/kickq.wav'));
     });
 
       app.get('/kick5.wav', function(req, res) {
