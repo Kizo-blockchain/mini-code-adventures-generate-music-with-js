@@ -150,7 +150,6 @@ const snare = scribble.clip({
 });
 
 
-
 //scribble.midi(snare, 'snare.mid');
 let midisnare = scribble.midi(snare, null);
 
@@ -164,8 +163,6 @@ const clav = scribble.clip({
 
 //scribble.midi(snare, 'snare.mid');
 let midiclav = scribble.midi(clav, null);
-
-
 
 
 const mar = scribble.clip({
@@ -203,11 +200,22 @@ let midiData = scribble.midi(oh, null);
    let midiconvertch = MidiConvert.parse(midich)
    let midiconvertkick = MidiConvert.parse(midikick)
 
+   let patterns = {snare:randomSnarePatern,
+     oh:randomOhPatern,
+     clav:randomChPatern,
+     mar:randomMarPatern,
+     ch:randomChPatern,
+     kick:randomKickPatern
+   }
+
+   console.log("patterns : "+JSON.stringify(patterns))
+
   // console.log(midiconvert)
 
   // console.log("midi converted")
 
   let obj = {
+   patterns:patterns,
    oh:midiconvertsoh, 
    snare : midiconvertsnare,
    bass:midiconvertbass,
