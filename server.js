@@ -275,6 +275,15 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/CH3.wav'));
      });
 
+       app.get('/ch/CH4.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/CH4.wav'));
+     });
+
 
         app.get('/kick1.wav', function(req, res) {
   
