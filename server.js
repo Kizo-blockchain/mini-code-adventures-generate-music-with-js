@@ -162,7 +162,7 @@ const snare = scribble.clip({
   pattern: snareArray[randomSnarePatern].repeat(2),
 });
 
-let snaret = scribble.midi(snare, 'snaretest.mid');
+//let snaret = scribble.midi(snare, 'snaretest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midisnare = scribble.midi(snare, null);
 
@@ -173,7 +173,7 @@ const clav = scribble.clip({
 });
 
 
-let clavt =  scribble.midi(clav, 'clavtest.mid');
+//let clavt =  scribble.midi(clav, 'clavtest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midiclav = scribble.midi(clav, null);
 
@@ -184,7 +184,7 @@ const mar = scribble.clip({
 });
 
 
-let mart = scribble.midi(mar, 'martest.mid');
+//let mart = scribble.midi(mar, 'martest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midimar = scribble.midi(mar, null);
 
@@ -195,8 +195,25 @@ const oh = scribble.clip({
   pattern: ohArray[randomOhPatern].repeat(2),
 });
 
-let oht = scribble.midi(oh, 'ohtest.mid');
+//let oht = scribble.midi(oh, 'ohtest.mid');
 let midiData = scribble.midi(oh, null);
+
+
+const cob = scribble.clip({
+  notes: 'c4',
+  pattern: '---------------x'.repeat(2),
+});
+
+//let oht = scribble.midi(oh, 'ohtest.mid');
+let midicob = scribble.midi(cob, null);
+
+const cymb = scribble.clip({
+  notes: 'c4',
+  pattern: '--------x'.repeat(2),
+});
+
+//let oht = scribble.midi(oh, 'ohtest.mid');
+let midicymb = scribble.midi(cymb, null);
 
 //let midiData1 = scribble.midi(oh);
 
@@ -212,13 +229,18 @@ let midiData = scribble.midi(oh, null);
    let midiconvertbassend = MidiConvert.parse(midisbassEnd)
    let midiconvertch = MidiConvert.parse(midich)
    let midiconvertkick = MidiConvert.parse(midikick)
+   let midiconvertcob = MidiConvert.parse(midicob)
+   let midiconvertcymb = MidiConvert.parse(midicymb)
 
    let patterns = {snare:randomSnarePatern,
      oh:randomOhPatern,
      clav:randomClPatern,
      mar:randomMarPatern,
      ch:randomChPatern,
-     kick:randomKickPatern
+     kick:randomKickPatern,
+     cob:midiconvertcob,
+     cyb:midiconvertcymb
+
    }
 
    console.log("patterns : "+JSON.stringify(patterns))
