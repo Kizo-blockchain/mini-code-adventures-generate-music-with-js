@@ -288,7 +288,7 @@ let midiData = scribble.midi(oh, null);
         res.sendFile(path.join(__dirname, './Hits', '/CH3.wav'));
      });
 
-       app.get('/CH4.wav', function(req, res) {
+       app.get('/ch/CH4.wav', function(req, res) {
   
           res.statusCode = 200;
           res.setHeader("Access-Control-Allow-Origin", "*");
