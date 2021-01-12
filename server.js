@@ -11,6 +11,13 @@ const port = process.env.PORT || 5000;
 const createMidiForToneJs = () => {
 
 
+//cowbell
+//cymbale
+
+
+
+
+
 var chArray = [
     '--x---x---x---x-',
     'xxxxxxxxxxxxxxxx',
@@ -56,7 +63,9 @@ var randomClPatern = Math.floor(Math.random()*clavArray.length);
 var marArray = [
     '--x---x---x---x-',
     '-xx--xxxxxx-x-xx',
-    '--------x-------'
+    '-x-x-x--xx--x-xx',
+    '--x---x---x-xxxx',
+    '--x-------x-----'
 ];
 
 var randomMarPatern = Math.floor(Math.random()*marArray.length);
@@ -101,22 +110,25 @@ var randomKickPatern = Math.floor(Math.random()*kickArray.length);
 // const C = 'x-[x[RR]]';
 
 const kick = scribble.clip({
-  pattern: kickArray[randomKickPatern].repeat(10),
+  pattern: kickArray[randomKickPatern].repeat(2),
   notes: 'c4',
 });
 
 //scribble.midi(kick, 'kick.mid');
+let kickt = scribble.midi(kick, 'kicktest.mid');
 let midikick = scribble.midi(kick, null);
 
 
+
 const ch = scribble.clip({
-  pattern: chArray[randomChPatern].repeat(10),
+  pattern: chArray[randomChPatern].repeat(2),
   notes: 'c4',
   sizzle: 'sin',
   sizzleReps: 32,
 });
 
 //scribble.midi(ch, 'ch.mid');
+let cht = scribble.midi(ch, 'chtest.mid');
 let midich = scribble.midi(ch, null);
 
 
@@ -127,12 +139,13 @@ const bass = scribble.clip({
   accent: '--x-',
 });
 
+
 let midisbass = scribble.midi(bass, null);
 
 
 const bassEnd = scribble.clip({
   notes: 'G#2',
-  pattern: '[-xRx][-xRR][-xRx][-xxR]'.repeat(10),
+  pattern: '[-xRx][-xRR][-xRx][-xxR]'.repeat(2),
   randomNotes: scribble.scale('Bb2 harmonic minor').slice(2, 5),
   accent: '--x-',
 });
@@ -146,32 +159,32 @@ let midisbassEnd = scribble.midi(bassEnd, null);
 
 const snare = scribble.clip({
   notes: 'c4',
-  pattern: snareArray[randomSnarePatern].repeat(10),
+  pattern: snareArray[randomSnarePatern].repeat(2),
 });
 
-
+let snaret = scribble.midi(snare, 'snaretest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midisnare = scribble.midi(snare, null);
 
 
 const clav = scribble.clip({
   notes: 'c4',
-  pattern: clavArray[randomClPatern].repeat(10),
+  pattern: clavArray[randomClPatern].repeat(2),
 });
 
 
-
+let clavt =  scribble.midi(clav, 'clavtest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midiclav = scribble.midi(clav, null);
 
 
 const mar = scribble.clip({
   notes: 'c4',
-  pattern: marArray[randomMarPatern].repeat(10),
+  pattern: marArray[randomMarPatern].repeat(2),
 });
 
 
-
+let mart = scribble.midi(mar, 'martest.mid');
 //scribble.midi(snare, 'snare.mid');
 let midimar = scribble.midi(mar, null);
 
@@ -179,16 +192,16 @@ let midimar = scribble.midi(mar, null);
 
 const oh = scribble.clip({
   notes: 'c4',
-  pattern: ohArray[randomOhPatern].repeat(10),
+  pattern: ohArray[randomOhPatern].repeat(2),
 });
 
-
+let oht = scribble.midi(oh, 'ohtest.mid');
 let midiData = scribble.midi(oh, null);
 
 //let midiData1 = scribble.midi(oh);
 
 
-  console.log("check bytes : "+midiData)
+    console.log("check bytes : "+midiData)
 
    let midiconvertsnare = MidiConvert.parse(midisnare)
    let midiconvertsoh = MidiConvert.parse(midisnare)
@@ -202,7 +215,7 @@ let midiData = scribble.midi(oh, null);
 
    let patterns = {snare:randomSnarePatern,
      oh:randomOhPatern,
-     clav:randomChPatern,
+     clav:randomClPatern,
      mar:randomMarPatern,
      ch:randomChPatern,
      kick:randomKickPatern
@@ -437,7 +450,7 @@ let midiData = scribble.midi(oh, null);
           res.setHeader("Access-Control-Allow-Origin", "*");
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        res.sendFile(path.join(__dirname, './Hits', '/Snare3.wav'));
+        res.sendFile(path.join(__dirname, './Hits', '/snare3.wav'));
      });
 
       app.get('/Snare4.wav', function(req, res) {
