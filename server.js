@@ -238,8 +238,7 @@ let midicymb = scribble.midi(cymb, null);
      mar:randomMarPatern,
      ch:randomChPatern,
      kick:randomKickPatern,
-     cob:midiconvertcob,
-     cyb:midiconvertcymb
+ 
 
    }
 
@@ -258,7 +257,10 @@ let midicymb = scribble.midi(cymb, null);
    ch:midiconvertch,
    kick:midiconvertkick,
    clav:mindiconvertclav,
-   mar: mindiconvertmar}
+   mar: mindiconvertmar,
+   cob:midiconvertcob,
+   cyb:midiconvertcymb
+ }
 
   return obj;
 };
