@@ -157,6 +157,16 @@ let midisbassEnd = scribble.midi(bassEnd, null);
 // const sA = '-x-x';
 // const sB = '-[xR]-[Rx]';
 
+const clap = scribble.clip({
+  notes: 'c4',
+  pattern: clapArray[randomClPatern].repeat(2),
+});
+
+//let snaret = scribble.midi(snare, 'snaretest.mid');
+//scribble.midi(snare, 'snare.mid');
+let midiclap = scribble.midi(clap, null);
+
+
 const snare = scribble.clip({
   notes: 'c4',
   pattern: snareArray[randomSnarePatern].repeat(2),
@@ -231,12 +241,14 @@ let midicymb = scribble.midi(cymb, null);
    let midiconvertkick = MidiConvert.parse(midikick)
    let midiconvertcob = MidiConvert.parse(midicob)
    let midiconvertcymb = MidiConvert.parse(midicymb)
+   let midiconvertclap = MidiConvert.parse(midiclap)
 
    let patterns = {snare:randomSnarePatern,
      oh:randomOhPatern,
      clav:randomClPatern,
      mar:randomMarPatern,
      ch:randomChPatern,
+     clap:randomClPatern,
      kick:randomKickPatern,
  
 
@@ -257,6 +269,7 @@ let midicymb = scribble.midi(cymb, null);
    ch:midiconvertch,
    kick:midiconvertkick,
    clav:mindiconvertclav,
+   clap:midiconvertclap,
    mar: mindiconvertmar,
    cob:midiconvertcob,
    cyb:midiconvertcymb
