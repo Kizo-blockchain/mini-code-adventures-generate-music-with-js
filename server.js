@@ -84,7 +84,7 @@ var randomSnarePatern = Math.floor(Math.random()*snareArray.length);
 
 
 var kickArray = [
-    'x---x---x---x---',
+    'x---x---x---x--',
     'x---x---x---x--x',
     'x--x--x-------x-',
     'x--x---x--xx----',
@@ -95,10 +95,10 @@ var randomKickPatern = Math.floor(Math.random()*kickArray.length);
 
 
 
-const ptn = 'xxxx'.repeat(7);
-const A = 'xxx[x[RR]]';
-const B = 'xx[x[RR]][x[RR]]';
-const C = 'x-[x[RR]]';
+// const ptn = 'xxxx'.repeat(7);
+// const A = 'xxx[x[RR]]';
+// const B = 'xx[x[RR]][x[RR]]';
+// const C = 'x-[x[RR]]';
 
 const kick = scribble.clip({
   pattern: kickArray[randomKickPatern].repeat(10),
@@ -141,8 +141,8 @@ const bassEnd = scribble.clip({
 let midisbassEnd = scribble.midi(bassEnd, null);
 
 
-const sA = '-x-x';
-const sB = '-[xR]-[Rx]';
+// const sA = '-x-x';
+// const sB = '-[xR]-[Rx]';
 
 const snare = scribble.clip({
   notes: 'c4',
@@ -402,6 +402,42 @@ let midiData = scribble.midi(oh, null);
           res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         res.sendFile(path.join(__dirname, './Hits', '/MAR2.wav'));
+     });
+
+    app.get('/Snare1.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/Snare1.wav'));
+     });
+
+      app.get('/Snare2.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/Snare2.wav'));
+     });
+
+      app.get('/Snare3.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/Snare3.wav'));
+     });
+
+      app.get('/Snare4.wav', function(req, res) {
+  
+          res.statusCode = 200;
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+        res.sendFile(path.join(__dirname, './Hits', '/Snare4.wav'));
      });
 
 
