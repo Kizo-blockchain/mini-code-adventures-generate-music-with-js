@@ -254,6 +254,70 @@ let midicymb = scribble.midi(cymb, null);
 
    }
 
+   /// generate random for instruments
+
+      var charray = [
+          "https://v4v3.herokuapp.com/ch/CH1.wav",
+          "https://v4v3.herokuapp.com/ch/CH2.wav",
+          "https://v4v3.herokuapp.com/ch/CH3.wav",
+
+      ];
+
+    var randomCh = Math.floor(Math.random()*charray.length);
+
+
+       var kickarray = [
+          "https://v4v3.herokuapp.com/kick1.wav",
+          "https://v4v3.herokuapp.com/kick2.wav",
+          "https://v4v3.herokuapp.com/kick3.wav",
+          "https://v4v3.herokuapp.com/kickq.wav",
+          "https://v4v3.herokuapp.com/kick5.wav",
+
+      ];
+
+     var randomKick = Math.floor(Math.random()*kickarray.length);
+
+        var mararray = [
+          "https://v4v3.herokuapp.com/MAR1.wav",
+          "https://v4v3.herokuapp.com/MAR2.wav"
+
+      ];
+
+     var randomMar = Math.floor(Math.random()*mararray.length);
+
+
+
+      var snarearray = [
+          "https://v4v3.herokuapp.com/Snare1.wav",
+          "https://v4v3.herokuapp.com/Snare2.wav",
+          "https://v4v3.herokuapp.com/Snare3.wav",
+          "https://v4v3.herokuapp.com/Snare4.wav"
+      ];
+
+
+      var randomSn = Math.floor(Math.random()*snarearray.length);
+
+
+        var cymearray = [
+          "https://v4v3.herokuapp.com/CYM1.wav",
+          "https://v4v3.herokuapp.com/CYM2.wav"
+      ];
+     
+       var randomCym = Math.floor(Math.random()*cymearray.length);
+
+
+        var clapearray = [
+          "https://v4v3.herokuapp.com/clap1.wav",
+          "https://v4v3.herokuapp.com/clap2.wav",
+          "https://v4v3.herokuapp.com/clap3.wav",
+      ];
+     
+     var randomClap = Math.floor(Math.random()*clapearray.length);
+
+
+   
+
+
    console.log("patterns : "+JSON.stringify(patterns))
 
   // console.log(midiconvert)
@@ -261,6 +325,9 @@ let midicymb = scribble.midi(cymb, null);
   // console.log("midi converted")
 
   let obj = {
+
+   instruments_sources:{ch:randomCh,kick:randomKick,mar:randomMar,snare:randomSn,cym:randomCym,randomClap},
+   instruments:{kick:Math.random() < 0.9,mar:Math.random() < 0.25,cym:Math.random() < 0.1,clap:Math.random() < 0.3,cob:Math.random() < 0.05,snare:Math.random() < 0.8,oh:Math.random() < 0.4,ch:Math.random() < 0.6},
    patterns:patterns,
    oh:midiconvertsoh, 
    snare : midiconvertsnare,
@@ -274,6 +341,8 @@ let midicymb = scribble.midi(cymb, null);
    cob:midiconvertcob,
    cyb:midiconvertcymb
  }
+
+ console.log(obj);
 
   return obj;
 };
