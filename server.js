@@ -326,7 +326,7 @@ let midicymb = scribble.midi(cymb, null);
 
   let obj = {
 
-   instruments_sources:{ch:randomCh,kick:randomKick,mar:randomMar,snare:randomSn,cym:randomCym,randomClap},
+   instruments_sources:{ch:randomCh,kick:randomKick,mar:randomMar,snare:randomSn,cym:randomCym,clap:randomClap},
    instruments:{kick:Math.random() < 0.9,mar:Math.random() < 0.25,cym:Math.random() < 0.1,clap:Math.random() < 0.3,cob:Math.random() < 0.05,snare:Math.random() < 0.8,oh:Math.random() < 0.4,ch:Math.random() < 0.6},
    patterns:patterns,
    oh:midiconvertsoh, 
