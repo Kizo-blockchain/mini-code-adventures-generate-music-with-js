@@ -272,7 +272,6 @@ let midicymb = scribble.midi(cymb, null);
           "https://v4v3.herokuapp.com/kick3.wav",
           "https://v4v3.herokuapp.com/kickq.wav",
           "https://v4v3.herokuapp.com/kick5.wav",
-
       ];
 
      var randomKick = Math.floor(Math.random()*kickarray.length);
@@ -301,7 +300,7 @@ let midicymb = scribble.midi(cymb, null);
         var cymearray = [
           "https://v4v3.herokuapp.com/CYM1.wav",
           "https://v4v3.herokuapp.com/CYM2.wav"
-      ];
+        ];
      
        var randomCym = Math.floor(Math.random()*cymearray.length);
 
@@ -310,7 +309,7 @@ let midicymb = scribble.midi(cymb, null);
           "https://v4v3.herokuapp.com/clap1.wav",
           "https://v4v3.herokuapp.com/clap2.wav",
           "https://v4v3.herokuapp.com/clap3.wav",
-      ];
+        ];
      
      var randomClap = Math.floor(Math.random()*clapearray.length);
 
@@ -325,22 +324,21 @@ let midicymb = scribble.midi(cymb, null);
   // console.log("midi converted")
 
   let obj = {
-
    instruments_sources:{ch:randomCh,kick:randomKick,mar:randomMar,snare:randomSn,cym:randomCym,clap:randomClap},
    instruments:{kick:Math.random() < 0.9,mar:Math.random() < 0.25,cym:Math.random() < 0.1, clap:Math.random() < 0.3,cob:Math.random() < 0.05,snare:Math.random() < 0.8,oh:Math.random() < 0.4,ch:Math.random() < 0.6},
    patterns:patterns,
    oh:midiconvertsoh, 
-   snare : midiconvertsnare,
+   snare: midiconvertsnare,
    bass:midiconvertbass,
    bassend:midiconvertbassend,
    ch:midiconvertch,
    kick:midiconvertkick,
    clav:mindiconvertclav,
    clap:midiconvertclap,
-   mar: mindiconvertmar,
+   mar:mindiconvertmar,
    cob:midiconvertcob,
    cyb:midiconvertcymb
- }
+   }
 
  console.log(obj);
 
